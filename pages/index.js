@@ -1,64 +1,56 @@
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
-        <title>Flexshop</title>
+        <title>Zikri Mansyursyah</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         <h1 className="text-6xl font-bold">Hai! Im Zikri Mansyursyah</h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">pages/index.js</code>
-        </p>
-
-        <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
+        <p className="mt-6 text-2xl">an UI/UX Designer and Frontend Web Developer</p>
+        <code className="mt-5 py-3 px-5 font-mono text-lg bg-gray-100 rounded-md">
+          My Portfolio is being developed, stay tuned 😊 ✌🏿
+        </code>
+        <h3 className="text-xl mt-12 mb-3">My little Project</h3>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-gray-500 animate-bounce"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 13l-5 5m0 0l-5-5m5 5V6" />
+        </svg>
+        <div className="mt-5 flex items-center justify-center gap-6">
+          <Link href="./flexshop">
+            <a className="px-7 py-4 border-2 motion-safe:hover:scale-110 duration-500 hover:shadow-lg hover:border-blue-600 hover:text-blue-600 rounded-lg text-gray-600 font-semibold">
+              Flexshop
+            </a>
+          </Link>
+          <Link href="!#">
+            <a
+              className="px-7 py-4 border-2 motion-safe:hover:scale-110 duration-500 hover:shadow-lg hover:border-blue-600 hover:text-blue-600 rounded-lg text-gray-600 font-semibold"
+              href="https://zikrimansyursyah.com/"
+              target="_blank"
+            >
+              Superb Color
+            </a>
+          </Link>
           <a
-            href="https://nextjs.org/docs"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
+            className="px-7 py-4 border-2 motion-safe:hover:scale-110 duration-500 hover:shadow-lg hover:border-blue-600 hover:text-blue-600 rounded-lg text-gray-600 font-semibold"
+            href="https://silungkang.id/"
+            target="_blank"
           >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">Instantly deploy your Next.js site to a public URL with Vercel.</p>
+            Silungkang App
           </a>
         </div>
       </main>
 
       <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
-        </a>
+        <p className="mt-6 text-xl">Made With Love and Passion - 2021</p>
       </footer>
     </div>
   );
