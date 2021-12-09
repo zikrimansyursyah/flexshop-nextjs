@@ -218,7 +218,7 @@ export default function Flexshop() {
         </div>
       </div>
       <div className="content-web mt-36 h-screen w-screen">
-        <div className="pr-10 bg-gray-200 h-5/6">
+        <div className=" pr-6 bg-gray-200 h-5/6">
           <div className="h-full w-full bg-white">
             <div className="flex h-full">
               <div className="flex-shrink w-2/12"></div>
@@ -272,7 +272,7 @@ export default function Flexshop() {
             </div>
           </div>
         </div>
-        <div className="pr-10 my-20 bg-gray-200 h-1/6">
+        <div className="pr-6 bg-gray-200 h-1/6">
           <div className="h-full w-full bg-white">
             <div className="flex h-full">
               <div className="flex-shrink w-2/12"></div>
@@ -287,7 +287,7 @@ export default function Flexshop() {
             </div>
           </div>
         </div>
-        <div className="pr-10 bg-gray-200 h-3/6">
+        <div className="pr-6 bg-gray-200 h-3/6">
           <div className="h-full w-full bg-white">
             <div className="flex h-full">
               <div className="flex-shrink w-2/12"></div>
@@ -320,7 +320,7 @@ export default function Flexshop() {
             </div>
           </div>
         </div>
-        <div className="pr-10 my-20 bg-gray-200 h-1/6">
+        <div className="pr-6 bg-gray-200 h-1/6">
           <div className="h-full w-full bg-white">
             <div className="flex h-full">
               <div className="flex-shrink w-2/12"></div>
@@ -336,7 +336,7 @@ export default function Flexshop() {
           </div>
         </div>
       </div>
-      <div className="bg-gray-200 w-full fixed bottom-0 px-10 pb-6">
+      <div className="bg-gray-200 w-full fixed bottom-0 pl-10 pr-6 pb-6">
         <div className="bg-white rounded-b-2xl h-10 flex items-center justify-between shadow-xl px-10">
           <p className="text-sm">&copy; Flexshop 2021 All Right Reserved</p>
           <p className="text-sm">Made with Love and Passion - Zikri Mansyursyah</p>
