@@ -1,7 +1,48 @@
+import { React, useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { authLogin } from "../../service/auth";
+const validationSchema = yup.object().shape({
+  email: yup.string().email().required("Email salah"),
+  password: yup.string().min(8).required(),
+});
 
 export default function Flexshop() {
+  // const navigate = useNavigate();
+  const [openModal, setopenModal] = useState(false);
+  const [currentContainer, setCurrentContainer] = useState(false);
+
+  // useEffect(() => {
+  //   // cek jika user sudah terotentikasi
+  //   let isAuth = sessionStorage.getItem("logged");
+  //   if (isAuth) {
+  //     //arahkan user kembali ke dashboard jika sudah login
+  //     // navigate({ pathname: "./dashboard" });
+  //   }
+  // }, [navigate]);
+
+  const handleLogin = async (e) => {
+    const { code, msg } = await authLogin(formik.values);
+    if (code === 200) {
+      sessionStorage.setItem("logged", true);
+      setopenModal(false);
+      alert(msg);
+    } else {
+      alert(msg);
+    }
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: () => handleLogin(),
+  });
+
   return (
     <div className="flex">
       <Head>
@@ -68,8 +109,8 @@ export default function Flexshop() {
             ></input>
           </div>
           <a
-            className="bg-gray-700 text-white font-medium px-12 flex items-center rounded-xl hover:scale-110 transition duration-500 ease-in-out hover:shadow-lg"
-            href="!#"
+            className="bg-gray-700 text-white font-medium px-12 flex items-center rounded-xl hover:scale-110 transition duration-500 ease-in-out hover:shadow-lg cursor-pointer"
+            onClick={() => setopenModal(true)}
           >
             Login
           </a>
@@ -222,7 +263,7 @@ export default function Flexshop() {
           <div className="h-full w-full bg-white">
             <div className="flex h-full">
               <div className="flex-shrink w-2/12"></div>
-              <div className="flex-none w-10/12 px-10 pt-10 flex gap-10">
+              <div className="flex-none w-10/12 px-10 flex gap-10">
                 <div className="flex-none bg-yeezy700 bg-cover bg-center w-8/12 pl-14 flex items-end pb-20">
                   <a
                     className="bg-white w-60 h-64 shadow-xl p-9 flex flex-col justify-center border-2 border-white hover:border-blue-600 motion-safe:hover:scale-110 duration-500"
@@ -341,6 +382,101 @@ export default function Flexshop() {
           <p className="text-sm">&copy; Flexshop 2021 All Right Reserved</p>
           <p className="text-sm">Made with Love and Passion - Zikri Mansyursyah</p>
         </div>
+      </div>
+      <div className="fixed auth">
+        {openModal ? (
+          <div className="fixed w-screen h-screen bg-gray-100 bg-opacity-10 flex flex-col items-center justify-center backdrop-blur-sm">
+            <div className="w-3/12 text-right translate-y-8 translate-x-5">
+              <button
+                onClick={() => setopenModal(false)}
+                className="bg-red-400 p-3 rounded-lg motion-safe:hover:scale-110 hover:shadow-md duration-500"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-white "
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            {currentContainer ? (
+              <div className="w-3/12 h-auto bg-white rounded-3xl shadow-lg p-10 flex flex-col justify-center items-center gap-5">
+                <div className="text-center mb-5">
+                  <h2 className="font-roboto font-semibold text-2xl mb-1">Lets Started!</h2>
+                  <p className="text-gray-500 ">Get cool stuff and be hype with us</p>
+                </div>
+                <input
+                  className="w-full border p-3 rounded-xl border-blue-100 focus:outline-none"
+                  placeholder="Enter your email"
+                />
+                <input
+                  className="w-full border p-3 rounded-xl border-blue-100 focus:outline-none"
+                  placeholder="Enter your Password"
+                />
+                <input
+                  className="w-full border p-3 rounded-xl border-blue-100 focus:outline-none"
+                  placeholder="Enter your email"
+                />
+                <input
+                  className="w-full border p-3 rounded-xl border-blue-100 focus:outline-none"
+                  placeholder="Enter your Password"
+                />
+                <button className="bg-blue-100 w-full py-3 rounded-2xl font-roboto font-semibold tracking-wider text-gray-800 hover:shadow-lg motion-safe:hover:scale-105 duration-500 mt-10">
+                  SIGN UP
+                </button>
+                <a className="text-gray-500 cursor-pointer" onClick={() => setCurrentContainer(false)}>
+                  I Have an Account
+                </a>
+              </div>
+            ) : (
+              <div className="w-3/12 h-auto bg-white rounded-3xl shadow-lg p-10 flex flex-col justify-center items-center gap-5">
+                <div className="text-center mb-5">
+                  <h2 className="font-roboto font-semibold text-2xl mb-1">Welcome Back</h2>
+                  <p className="text-gray-500">Enter your credentials to access your account.</p>
+                </div>
+                <form onSubmit={formik.handleSubmit} className="w-full flex flex-col justify-center items-center gap-5">
+                  <input
+                    className="w-full border p-3 rounded-xl border-blue-100 focus:outline-none"
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    onChange={formik.handleChange}
+                    invalid={formik.touched.email && Boolean(formik.errors.email)}
+                  />
+                  <input
+                    className="w-full border p-3 rounded-xl border-blue-100 focus:outline-none"
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your Password"
+                    onChange={formik.handleChange}
+                    invalid={formik.touched.email && Boolean(formik.errors.email)}
+                  />
+                  <div className="w-full flex justify-end">
+                    <a href="!#" className="text-gray-500 ">
+                      Lupa Password
+                    </a>
+                  </div>
+                  <button
+                    className="bg-blue-100 w-full py-3 rounded-2xl font-roboto font-semibold tracking-wider text-gray-800 hover:shadow-lg motion-safe:hover:scale-105 duration-500"
+                    type="submit"
+                  >
+                    LOGIN
+                  </button>
+                </form>
+                <a className="text-gray-500 cursor-pointer" onClick={() => setCurrentContainer(true)}>
+                  I Don't Have an Account
+                </a>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );
