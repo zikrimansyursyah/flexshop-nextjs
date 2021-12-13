@@ -25,6 +25,17 @@ module.exports = {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
       },
+      spacing: {
+        "frame-right": "1.43rem",
+        "85%": "88%",
+        "92vw": "92vw",
+        "10vw": "10vw",
+        "85vh": "85vh",
+        "50vh": "50vh",
+      },
+      margin: {
+        content: "19%",
+      },
     },
   },
   variants: {
