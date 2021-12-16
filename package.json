@@ -4,7 +4,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "profile":"npx json-server --watch profile.json --port 3002"
+    "profile":"npx json-server --watch profile.json --port 3002",
+    "server":"npx json-server --watch db.json --port 3001"
   },
   "dependencies": {
     "axios": "^0.24.0",

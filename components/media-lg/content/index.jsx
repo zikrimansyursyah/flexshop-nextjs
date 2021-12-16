@@ -1,6 +1,38 @@
-import { React } from "react"
+import { React, useState, useEffect } from "react"
+import { deleteProducts, getProducts } from "../../../service/product"
 
 const Content = () => {
+    const [data, setData] = useState({ headers: [], rows: [] });
+
+    const getData = async () => {
+        const { code, products, msg } = await getProducts()
+        if (code === 200) {
+            setData(products)
+        } else {
+            alert(msg)
+        }
+    }
+
+    const handleDelete = async (id) => {
+
+        const { code, msg, products } = await deleteProducts(data, id)
+        if (code === 200) {
+            console.log({ products })
+            setData(products)
+        } else {
+            alert(msg)
+        }
+    }
+
+    // const handleEdit = (id) => {
+    //     setEditedDataId(id)
+    //     setIsEditModalOpen(true)
+    // }
+
+    useEffect(() => {
+        getData()
+        // ... another func
+    }, [])
     return (
         <>
             <div className="w-92vw ml-16 pt-32 duration-500">
@@ -39,7 +71,38 @@ const Content = () => {
 
                 {/* Content */}
                 <div className="content w-10/12 ml-content mr-32 pr-16 flex flex-col gap-10">
-                    <div className="w-full h-85vh flex gap-7" id="home">
+                    <div className="w-full h-85vh">
+                        <table class="w-full table text-gray-400 space-y-6 text-sm mt-6 border-separate">
+                            <thead class="bg-gray-700 text-gray-500 rounded-xl">
+                                <tr>
+                                    <th class="p-3 rounded-l-xl">No</th>
+                                    <th class="p-3">Id</th>
+                                    <th class="p-3">Name</th>
+                                    <th class="p-3">Quantity</th>
+                                    <th class="p-3">Price</th>
+                                    <th class="p-3 rounded-r-xl">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody className="bg-gray-100 text-gray-500 rounded-xl">
+                                {
+                                    data.rows.map((row, idx) => (
+                                        <tr key={idx}>
+                                            <th scope="row" className="p-3 rounded-l-xl text-center">{idx + 1}</th>
+                                            <td className="p-3 text-center">{row.id}</td>
+                                            <td className="p-3 text-center">{row.name}</td>
+                                            <td className="p-3 text-center">{row.price}</td>
+                                            <td className="p-3 text-center">{row.stock}</td>
+                                            <td className="p-3 w-min rounded-r-xl flex m-auto gap-1">
+                                                <button className="bg-blue-200 px-5 py-2 rounded-lg">Edit</button>
+                                                <button className="bg-red-200 px-5 py-2 rounded-lg">Hapus</button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    {/* <div className="w-full h-85vh flex gap-7" id="home">
                         <div className="flex-grow bg-yeezy700 bg-cover bg-center flex items-center pl-14 pt-36">
                             <a
                                 className="bg-white w-60 h-64 shadow-xl p-9 flex flex-col justify-center border-2 border-white hover:border-blue-600 motion-safe:hover:scale-110 duration-500"
@@ -119,7 +182,7 @@ const Content = () => {
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>
