@@ -43,6 +43,13 @@
         "price": "1",
         "stock": "1",
         "category": "dsds"
+      },
+      {
+        "id": 532532344,
+        "name": "Nike Air Jordan",
+        "price": "4000000",
+        "stock": "12",
+        "category": "Nike Sneakers"
       }
     ]
   }

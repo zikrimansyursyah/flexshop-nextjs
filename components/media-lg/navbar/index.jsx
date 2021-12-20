@@ -1,9 +1,11 @@
 import { React, useEffect, useState } from "react";
 import Link from "next/link";
 import AuthModal from "../../modal/authModal";
+import CreateModal from "../../modal/createModal";
 
 const NavbarLG = () => {
     const [OpenAuthModal, setOpenAuthModal] = useState(false);
+    const [OpenCreateModal, setOpenCreateModal] = useState(false);
     const [Logged, setLogged] = useState({ auth: false, user: '' });
     const [UserMenu, setUserMenu] = useState(false)
 
@@ -35,7 +37,7 @@ const NavbarLG = () => {
                             </svg>
                         </a>
                     </Link>
-                    <div className="bg-white w-4/12 rounded-xl flex items-center px-6 justify-between border border-gray-200 shadow-lg">
+                    <div className="bg-white w-4/12 rounded-xl flex flex-grow items-center px-6 justify-between border border-gray-200 shadow-lg">
                         <h1 className="text-xl font-medium">Flexshop.</h1>
                         <div className="text-xs text-right">
                             <p>DESIGNED BY</p>
@@ -48,13 +50,17 @@ const NavbarLG = () => {
                     >
                         Catalog
                     </a>
-                    <a
-                        className="w-1/12 bg-gray-700 text-white font-medium flex items-center justify-center rounded-xl hover:scale-110 transition duration-500 ease-in-out hover:shadow-lg"
-                        href="!#"
-                    >
-                        Featured
-                    </a>
-                    <div className="flex w-3/6 flex-grow shadow-lg rounded-xl">
+                    {
+                        Logged.auth ?
+                            <a
+                                className="w-1/12 bg-gray-700 text-white font-medium flex items-center justify-center cursor-pointer rounded-xl hover:scale-110 transition duration-500 ease-in-out hover:shadow-lg"
+                                onClick={() => setOpenCreateModal(true)}
+                            >
+                                Add Item
+                            </a> :
+                            <div className="hidden"></div>
+                    }
+                    <div className="flex w-3/6 shadow-lg rounded-xl">
                         <div className="flex pl-5 bg-white items-center rounded-l-xl border-t border-b border-l border-gray-200">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +107,6 @@ const NavbarLG = () => {
                                             </div> :
                                             <div></div>
                                     }
-
                                 </a>
                             </div> :
                             <a
@@ -117,6 +122,11 @@ const NavbarLG = () => {
             </nav>
             {OpenAuthModal ? (
                 <AuthModal setOpenAuthModal={setOpenAuthModal} />
+            ) : (
+                <div></div>
+            )}
+            {OpenCreateModal ? (
+                <CreateModal setOpenCreateModal={setOpenCreateModal} />
             ) : (
                 <div></div>
             )}

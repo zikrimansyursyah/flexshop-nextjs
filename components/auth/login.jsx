@@ -14,9 +14,9 @@ const Login = ({ setCurrentContainer, setUsername }) => {
             sessionStorage.setItem("logged", true);
             sessionStorage.setItem("username", user)
             window.location = '/flexshop'
-            alert(msg);
+            console.log(msg);;
         } else {
-            alert(msg);
+            console.log(msg);
         }
     };
 
