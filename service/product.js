@@ -9,16 +9,15 @@ export const getProducts = async () => {
   }
 };
 
-export const createProducts = async (form) => {
+export const createProducts = async (prevData, form) => {
   try {
-    // prevData.rows.push(form)
-    console.log(form);
-    // const { data } = await axios.post(`http://localhost:3001/data`, (form))
-    // return { code: 200, status: "success", products: data, msg: "create data sukses" }
+    prevData.rows.push(form)
+    const { data } = await axios.post(`http://localhost:3001/data`, (prevData))
+    return { code: 200, status: "success", products: data, msg: "create data sukses" }
   } catch (e) {
-    return { code: 400, status: "error", products: null, msg: "Service Error" };
+    return { code: 400, status: "error", products: null, msg: "Service Error" }
   }
-};
+}
 
 export const editProducts = async (prevData, form, id) => {
   try {
