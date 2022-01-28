@@ -1,6 +1,5 @@
-import { React, useState, useEffect } from "react";
+import { React } from "react";
 import Head from "next/head";
-import Link from "next/link";
 import NavbarSM from "../../components/media-sm/navbar";
 import NavbarLG from "../../components/media-lg/navbar";
 import Frame from "../../components/media-lg/frame";
